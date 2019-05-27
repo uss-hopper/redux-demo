@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {UserList} from "../user-list";
+import {UserList} from "./UserList";
+import {getAllUsers} from "../../shared/actions/get-all-users";
 
-const HomeComponent = () => {
+const HomeComponent = ({getAllUsers, users}) => {
+
+	useEffect(() => {
+			getAllUsers()
+		},
+		[getAllUsers]
+	);
 
 	return (
 		<>
@@ -17,7 +24,7 @@ const HomeComponent = () => {
 						<th>Username</th>
 						<th>Website</th>
 					</tr>
-			<UserList/>
+			<UserList users={users}/>
 					</tbody>
 			</table>
 		</main>
@@ -25,6 +32,10 @@ const HomeComponent = () => {
 	)
 };
 
-export const Home = connect()(HomeComponent);
+const mapStateToProps = ({users}) => {
+	return {users};
+};
+
+export const Home = connect(mapStateToProps, {getAllUsers})(HomeComponent);
 
 

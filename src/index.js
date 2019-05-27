@@ -8,18 +8,16 @@ import {Provider} from "react-redux";
 import {Route,BrowserRouter, Switch} from "react-router-dom";
 import {FourOhFour} from "./pages/four-oh-four/FourOhFour";
 import {Home} from "./pages/home/Home";
-import {UserDetail} from "./pages/userDetail/UserDetail";
-
+import {UserPosts} from "./pages/userPosts/UserPosts";
 
 const store = createStore(reducers,applyMiddleware(thunk));
-
 
 const Routing = (store) => (
 	<>
 	<Provider store={store}>
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="/user/userId" component={UserDetail}/>
+				<Route exact path="/user/:userId" component={UserPosts}/>
 				<Route exact path="/" component={Home}/>
 				<Route component={FourOhFour}/>
 
