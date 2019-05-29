@@ -1,34 +1,60 @@
 import {connect} from "react-redux";
 import React, {useEffect} from 'react';
 import {getUserPosts} from "../../shared/actions/get-user-posts";
-import _ from "lodash";
+// import _ from "lodash";
 
 
-const UserPostsComponent = ({getUserPosts, userPosts}) => {
+const UserPostsComponent = (props) => {
+	const {getUserPosts, match, user, posts} = props;
 
+
+	// const [posts, setPosts] = useState([]);
+// setPosts(userPosts.posts);
+// console.log(posts);
 
 	// userPosts.forEach(a => {console.log(a)});
 	useEffect(() => {
-			getUserPosts()
+			getUserPosts(match.params.userId)
 		},
-		[getUserPosts]
+		[getUserPosts, match.params.userId]
 	);
-	const user = {postId: null, postUserId: null, body: null, title: null};
 
-	_.forEach(userPosts, function(index) {
-		typeof(index) === "object"
-			? user = inde
-			:
-	});
-	// const posts =[];
-	// posts.forEach(({title, postUserId, postId, body}) => {
-	// 	posts.push({postId,postUserId, body, title});
-	// });
+	const renderUserName = () => {
+
+		if(user) {
+			return (
+				<h2>{user.name}</h2>
+			);
+		}
+	};
+
+	const renderPosts = () => {
+		if (posts) {
+			return posts.map(index => {
+				return (
+
+			<div className="card"  key={index.postId}>
+				<div className="card-body">
+					<h5 className="card-title">{index.title}</h5>
+					<p className="card-text">{index.body}</p>
+					<p className="card-text">
+						<small className="text-muted">{index.username}</small>
+					</p>
+				</div>
+			</div>
+				)
+			})
+		}
+	}
+
 
 	return (
 		<>
-			<h2>hello world</h2>
 			<main className="container">
+
+				{renderUserName()}
+				{renderPosts()}
+
 				{/*<h4>{userPosts}'s posts</h4>*/}
 
 				{/*<div className="card-columns">*/}
@@ -46,7 +72,7 @@ const UserPostsComponent = ({getUserPosts, userPosts}) => {
 				{/*</div>*/}
 
 
-				{/*{userPosts.posts.map(post => (*/}
+				{/*{posts.map(post => (*/}
 				{/*	<tr key={post.postId}*/}
 				{/*	>*/}
 				{/*			<td>{post.title}</td>*/}
@@ -58,15 +84,19 @@ const UserPostsComponent = ({getUserPosts, userPosts}) => {
 
 				{/*	</tr>*/}
 				{/*))}*/}
-
-
 			</main>
 		</>
 	)
 };
 
 const mapStateToProps = ({userPosts}) => {
-	return {userPosts};
+	if(userPosts.user && userPosts.posts ) {
+		return {user: userPosts.user, posts: userPosts.posts}
+	}
+	return {user: null, posts: null}
 };
 
 export const UserPosts = connect(mapStateToProps, {getUserPosts})(UserPostsComponent);
+
+
+				{/*<h2 key={index.postId}>{index.postId}</h2>*/}
