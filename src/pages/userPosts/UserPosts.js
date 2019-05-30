@@ -25,7 +25,7 @@ const UserPostsComponent = (props) => {
 			return posts.map(index => {
 				return (
 
-			<div className="card"  key={index.postId}>
+			<div className="card text-white bg-dark mb-3"  key={index.postId}>
 				<div className="card-body">
 					<h5 className="card-title">{index.title}</h5>
 					<p className="card-text">{index.body}</p>
@@ -43,7 +43,9 @@ const UserPostsComponent = (props) => {
 		<>
 			<main className="container">
 				{renderUserName()}
+				<div className="card-group card-columns">
 				{renderPosts()}
+				</div>
 			</main>
 		</>
 	)

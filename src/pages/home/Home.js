@@ -13,15 +13,15 @@ const HomeComponent = ({getAllUsers, users}) => {
 
 	return (
 			<main className="container">
-				<table className="table table-responsive">
+				<table className="table table-responsive table-hover table-dark">
 					<thead>
 					<tr>
-						<th>User Id</th>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Phone</th>
-						<th>Username</th>
-						<th>Website</th>
+						<th><h4>User Id</h4></th>
+						<th><h4>Name</h4></th>
+						<th><h4>Email</h4></th>
+						<th><h4>Phone</h4></th>
+						<th><h4>Username</h4></th>
+						<th><h4>Website</h4></th>
 					</tr>
 					</thead>
 			<UserList users={users}/>
