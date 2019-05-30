@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserListComponent = ({users},props) => {
+const UserListComponent = ({users}) => {
 
 	return (
 		<tbody>

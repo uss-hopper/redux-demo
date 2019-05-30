@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import './index.css'
 import thunk from "redux-thunk";
 import {applyMiddleware, createStore} from "redux";
 import reducers from "./shared/reducers";
