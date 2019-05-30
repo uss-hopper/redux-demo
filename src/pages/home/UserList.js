@@ -1,34 +1,20 @@
 import React from 'react';
-// import { Route } from 'react-router-dom'
 
 const UserListComponent = ({users},props) => {
 
 	return (
-		<>
+		<tbody>
 			{users.map(user => (
-				<tr key={user.userId}
-					// onClick={() => {
-					// 	return props.router.push({
-					// 		pathname: '/user/${user.userId}',
-					// 		state: {
-					// 			userId: user.userId
-					// 		}
-					// 	});
-					// }}
-				>
-
-
-					<a href={`/user/${user.userId}`}>
-						<td>{user.userId}</td>
-						<td>{user.name}</td>
-						<td>{user.email}</td>
-						<td>{user.phone}</td>
-						<td>{user.username}</td>
-						<td>{user.website}</td>
-					</a>
+				<tr key={user.userId}>
+					<td><a href={`/user/${user.userId}`}>{user.userId}</a></td>
+					<td><a href={`/user/${user.userId}`}>{user.name}</a></td>
+					<td><a href={`/user/${user.userId}`}>{user.email}</a></td>
+					<td><a href={`/user/${user.userId}`}>{user.phone}</a></td>
+					<td><a href={`/user/${user.userId}`}>{user.username}</a></td>
+					<td><a href={`/user/${user.userId}`}>{user.website}</a></td>
 				</tr>
 			))}
-		</>
+		</tbody>
 	)
 };
 

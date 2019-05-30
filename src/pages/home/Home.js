@@ -12,10 +12,9 @@ const HomeComponent = ({getAllUsers, users}) => {
 	);
 
 	return (
-		<>
 			<main className="container">
 				<table className="table table-responsive">
-					<tbody>
+					<thead>
 					<tr>
 						<th>User Id</th>
 						<th>Name</th>
@@ -24,11 +23,10 @@ const HomeComponent = ({getAllUsers, users}) => {
 						<th>Username</th>
 						<th>Website</th>
 					</tr>
+					</thead>
 			<UserList users={users}/>
-					</tbody>
 			</table>
 		</main>
-		</>
 	)
 };
 

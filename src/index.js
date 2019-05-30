@@ -17,18 +17,9 @@ const Routing = (store) => (
 	<Provider store={store}>
 		<BrowserRouter>
 			<Switch>
-				{/*<Route exact path="/user/:userId" component={UserPosts}/>*/}
-
-				<Route
-					exact path="/user/:userId"
-					name="UserPosts"
-					component={UserPosts}
-					userId=":userId"
-				/>
-
+				<Route exact path="/user/:userId" component={UserPosts} userId=":userId"/>
 				<Route exact path="/" component={Home}/>
 				<Route component={FourOhFour}/>
-
 			</Switch>
 		</BrowserRouter>
 	</Provider>
