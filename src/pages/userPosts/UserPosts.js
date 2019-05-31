@@ -55,7 +55,7 @@ const mapStateToProps = ({userPosts}) => {
 	if(userPosts.user && userPosts.posts ) {
 		return {user: userPosts.user, posts: userPosts.posts}
 	}
-	return {user: null, posts: null}
+	return {user: null, posts: []}
 };
 
 export const UserPosts = connect(mapStateToProps, {getUserPosts})(UserPostsComponent);

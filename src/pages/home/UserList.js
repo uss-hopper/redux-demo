@@ -1,20 +1,23 @@
 import React from 'react';
+import { Route } from 'react-router';
 
 const UserListComponent = ({users}) => {
 
 	return (
-		<tbody>
-			{users.map(user => (
-				<tr key={user.userId}>
-					<td><a href={`/user/${user.userId}`}>{user.userId}</a></td>
-					<td><a href={`/user/${user.userId}`}>{user.name}</a></td>
-					<td><a href={`/user/${user.userId}`}>{user.email}</a></td>
-					<td><a href={`/user/${user.userId}`}>{user.phone}</a></td>
-					<td><a href={`/user/${user.userId}`}>{user.username}</a></td>
-					<td><a href={`/user/${user.userId}`}>{user.website}</a></td>
-				</tr>
-			))}
-		</tbody>
+		<Route render={ ({history}) => (
+			<tbody>
+				{users.map(user => (
+					<tr key={user.userId} onClick={() => {history.push(`user/${user.userId}`)}}>
+						<td>{user.userId}</td>
+						<td>{user.name}</td>
+						<td>{user.email}</td>
+						<td>{user.phone}</td>
+						<td>{user.username}</td>
+						<td>{user.website}</td>
+					</tr>
+				))}
+			</tbody>
+		)}/>
 	)
 };
 
