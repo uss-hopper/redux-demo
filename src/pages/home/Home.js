@@ -3,7 +3,9 @@ import {connect} from "react-redux";
 import {UserList} from "./UserList";
 import {getAllUsers} from "../../shared/actions/get-all-users";
 
-const HomeComponent = ({getAllUsers, users}) => {
+const HomeComponent = (props) => {
+
+	const {getAllUsers, users} = props;
 
 	useEffect(() => {
 			getAllUsers()
@@ -24,7 +26,6 @@ const HomeComponent = ({getAllUsers, users}) => {
 						<th><h4>Website</h4></th>
 					</tr>
 					</thead>
-			<UserList users={users}/>
 			</table>
 		</main>
 	)

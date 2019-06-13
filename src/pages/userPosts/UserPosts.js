@@ -21,22 +21,22 @@ const UserPostsComponent = (props) => {
 	};
 
 	const renderPosts = () => {
-		if (posts) {
-			return posts.map(index => {
-				return (
 
-			<div className="card text-white bg-dark mb-3"  key={index.postId}>
-				<div className="card-body">
-					<h5 className="card-title">{index.title}</h5>
-					<p className="card-text">{index.body}</p>
-					<p className="card-text">
-						<small className="text-muted">{index.username}</small>
-					</p>
+		return posts.map(index => {
+			return (
+
+				<div className="card text-white bg-dark mb-3" key={index.postId}>
+					<div className="card-body">
+						<h5 className="card-title">{index.title}</h5>
+						<p className="card-text">{index.body}</p>
+						<p className="card-text">
+							<small className="text-muted">{index.username}</small>
+						</p>
+					</div>
 				</div>
-			</div>
-				)
-			})
-		}
+			)
+		})
+
 	};
 
 	return (
@@ -44,7 +44,7 @@ const UserPostsComponent = (props) => {
 			<main className="container">
 				{renderUserName()}
 				<div className="card-group card-columns">
-				{renderPosts()}
+					{renderPosts()}
 				</div>
 			</main>
 		</>
@@ -52,7 +52,7 @@ const UserPostsComponent = (props) => {
 };
 
 const mapStateToProps = ({userPosts}) => {
-	if(userPosts.user && userPosts.posts ) {
+	if(userPosts.user && userPosts.posts) {
 		return {user: userPosts.user, posts: userPosts.posts}
 	}
 	return {user: null, posts: []}
