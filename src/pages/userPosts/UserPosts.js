@@ -1,15 +1,22 @@
-import {connect} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import React, {useEffect} from 'react';
 import {getUserPosts} from "../../shared/actions/get-user-posts";
 
-const UserPostsComponent = (props) => {
-	const {getUserPosts, match, user, posts} = props;
+const UserPostsComponent = ({ match }) => {
 
-	useEffect(() => {
-			getUserPosts(match.params.userId)
-		},
-		[getUserPosts, match.params.userId]
-	);
+
+
+	const dispatch = useDispatch();
+	const effects = () => {dispatch(getUserPosts(match.params.userId))};
+	const inputs = [match.params.userId];
+	useEffect(effects, inputs);
+
+	const {user, posts} = useSelector(state => state.userPosts);
+
+
+
+
+
 
 	const renderUserName = () => {
 
