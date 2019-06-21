@@ -1,68 +1,36 @@
 import {useSelector, useDispatch} from "react-redux";
 import React, {useEffect} from 'react';
 import {getUserPosts} from "../../shared/actions/get-user-posts";
+import {PostCard} from "./PostCard";
 
-const UserPostsComponent = ({ match }) => {
-
-
+export const UserPosts = ({match}) => {
 
 	const dispatch = useDispatch();
-	const effects = () => {dispatch(getUserPosts(match.params.userId))};
-	const inputs = [match.params.userId];
-	useEffect(effects, inputs);
 
-	const {user, posts} = useSelector(state => state.userPosts);
+	const sideEffects = () => {
 
-
-
-
-
-
-	const renderUserName = () => {
-
-		if(user) {
-			return (
-				<h2>{user.name}</h2>
-			);
-		}
+		dispatch(getUserPosts(match.params.userId))
 	};
 
-	const renderPosts = () => {
+	const sideEffectInputs = [match.params.userId];
 
-		return posts.map(index => {
-			return (
+	useEffect(sideEffects, sideEffectInputs);
 
-				<div className="card text-white bg-dark mb-3" key={index.postId}>
-					<div className="card-body">
-						<h5 className="card-title">{index.title}</h5>
-						<p className="card-text">{index.body}</p>
-						<p className="card-text">
-							<small className="text-muted">{index.username}</small>
-						</p>
-					</div>
-				</div>
-			)
-		})
+	const userPosts = useSelector(state => (
+		state.userPosts ? state.userPosts : []
+	));
 
-	};
+	const posts = userPosts.posts ? [...userPosts.posts] : [];
+	const user = userPosts.user ? {...userPosts.user} : null;
 
 	return (
 		<>
 			<main className="container">
-				{renderUserName()}
+				{user && (<h2>{user.name}</h2>)}
 				<div className="card-group card-columns">
-					{renderPosts()}
+					{posts.map(post => <PostCard post={post} key={post.postId}/>)}
 				</div>
 			</main>
 		</>
 	)
 };
-
-const mapStateToProps = ({userPosts}) => {
-	if(userPosts.user && userPosts.posts) {
-		return {user: userPosts.user, posts: userPosts.posts}
-	}
-	return {user: null, posts: []}
-};
-
-export const UserPosts = connect(mapStateToProps, {getUserPosts})(UserPostsComponent);
