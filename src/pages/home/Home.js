@@ -1,17 +1,22 @@
 import React, {useEffect} from 'react';
-import {connect} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {UserList} from "./UserList";
 import {getAllUsers} from "../../shared/actions/get-all-users";
 
-const HomeComponent = (props) => {
+export const Home= () => {
 
-	const {getAllUsers, users} = props;
+	const users = useSelector(state => state.users);
 
-	useEffect(() => {
-			getAllUsers()
-		},
-		[getAllUsers]
-	);
+	const dispatch = useDispatch();
+
+
+	const effects = () => {
+		dispatch(getAllUsers())
+	};
+
+	const inputs = [];
+
+	useEffect(effects, inputs);
 
 	return (
 			<main className="container">
@@ -26,15 +31,11 @@ const HomeComponent = (props) => {
 						<th><h4>Website</h4></th>
 					</tr>
 					</thead>
-			</table>
+					<UserList users={users}/>
+				</table>
 		</main>
 	)
 };
 
-const mapStateToProps = ({users}) => {
-	return {users};
-};
-
-export const Home = connect(mapStateToProps, {getAllUsers})(HomeComponent);
 
 
