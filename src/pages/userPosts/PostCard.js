@@ -1,6 +1,6 @@
 import React from "react";
 
-export const  PostCard = (post) => {
+export const  PostCard = ({post}) => {
 
 	console.log(post);
 
