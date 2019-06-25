@@ -1,4 +1,4 @@
- import {useAxios} from "../misc/useAxios";
+ import {useAxios} from "../hooks/useAxios";
 
 export const getAllUsers = () => async dispatch => {
 	const {data} = await useAxios('/apis/users/');

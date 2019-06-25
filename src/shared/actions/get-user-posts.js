@@ -1,4 +1,4 @@
-import {useAxios} from "../misc/useAxios";
+import {useAxios} from "../hooks/useAxios";
 
 export const getUserPosts = (userId) => async dispatch => {
 	const {data} = await useAxios(`/apis/users/?postUserId=${userId}`);
