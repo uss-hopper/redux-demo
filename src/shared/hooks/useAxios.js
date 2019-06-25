@@ -1,7 +1,7 @@
 import axios from "axios/index";
 
 
-export function useAxios(path, verb = null, requestObject = null) {
+export async function useAxios(path, verb = null, requestObject = null) {
 
 	const http = axios.create();
 	http.interceptors.response.use(({data, headers}) => {
@@ -29,26 +29,26 @@ export function useAxios(path, verb = null, requestObject = null) {
 	switch(verb) {
 
 		case "post":
-			return requestObject ? preformPost(path, requestObject) : undefined;
+			return await requestObject ? preformPost(path, requestObject) : undefined;
 		//
 		case "put":
-			return requestObject ? preformPut(path) : undefined;
+			return await requestObject ? preformPut(path) : undefined;
 		 case "delete":
-		 	return http.delete(path);
+		 	return await http.delete(path);
 
 		default:
-			return preformGet(path)
+			return await preformGet(path)
 
 	}
 
-	async function preformPut(path, requestObject) {
+	function preformPut(path, requestObject) {
 		let id = path.substring(path.lastIndexOf('/') + 1);
 		console.log(uuidV4ExpressionObject.exec(id));
-		return await http.put(path,requestObject)
+		return  http.put(path,requestObject)
 	}
 
 	async function preformPost(path, requestObject) {
-		return await http.post(path, requestObject)
+		return http.post(path, requestObject)
 	}
 
 	function preformGet(path) {
