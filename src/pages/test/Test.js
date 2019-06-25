@@ -8,8 +8,7 @@ export const Test = () => {
 	const axios = useAxios;
 
 	useEffect(() => {
-		const data = axios("/apis/users", "post", {test:"shit"});
-		console.log(data);
+		axios("/apis/users")
 		}
 	);
 
