@@ -3,28 +3,27 @@ import axios from "axios/index";
 
 export function useAxios(path, verb = null, requestObject = null) {
 
-	const http = axios.create()
-		.interceptors.response.use(function({data, headers}) {
-			if(data.status === 200) {
-				return data.data !== null
-					? {message: null, data: data.data, status: 200, type: " alert alert-success", headers: {...headers}}
-					: {message: data.message, status: 200, type: " alert alert-success", data: null, headers: {...headers}};
+	const http = axios.create();
+	http.interceptors.response.use(({data, headers}) =>{
+		if(data.status === 200) {
+			return data.data !== null
+				? {message: null, data: data.data, status: 200, type: " alert alert-success", headers: {...headers}}
+				: {message: data.message, status: 200, type: " alert alert-success", data: null, headers: {...headers}};
+		}
+		return (
+			{
+				message: data.message,
+				status: data.status,
+				type: "alert alert-danger",
+				data: null,
+				headers: {...headers}
 			}
-			return (
-				{
-					message: data.message,
-					status: data.status,
-					type: "alert alert-danger",
-					data: null,
-					headers: {...headers}
-				}
-			)
+		)
 
-		}, function(error) {
-			// Do something with response error
-			console.log(error);
-			return Promise.reject(error);
-		});
+	}, function(error) {
+		// Do something with response error
+		return Promise.reject(error);
+	});
 
 	const uuidV4ExpressionObject = new RegExp(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/);
 
@@ -39,7 +38,7 @@ export function useAxios(path, verb = null, requestObject = null) {
 		// 	return await http.delete(path);
 
 		default:
-			return  http.get(path);
+			return http.get(path);
 
 	}
 

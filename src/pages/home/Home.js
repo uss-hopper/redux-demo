@@ -5,7 +5,10 @@ import {getAllUsers} from "../../shared/actions/get-all-users";
 
 export const Home= () => {
 
-	const users = useSelector(state => state.users);
+	const users = useSelector(state => {
+		console.log(state);
+		return state.users}
+		);
 
 	const dispatch = useDispatch();
 

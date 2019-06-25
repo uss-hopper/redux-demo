@@ -1,8 +1,7 @@
- import {httpConfig} from "../misc/useAxios";
+ import {useAxios} from "../misc/useAxios";
 
 export const getAllUsers = () => async dispatch => {
-	//const {data} = await httpConfig('/apis/users/');
-
-	let data = [];
-	dispatch({type: "JUNK", payload: data })
+	const {data} = await useAxios('/apis/users/');
+	console.log(data);
+	dispatch({type: "GET_ALL_USERS", payload: data })
 };
