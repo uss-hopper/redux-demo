@@ -28,7 +28,10 @@ export const UserPosts = ({match}) => {
 			<main className="container">
 				{user && (<h2>{user.name}</h2>)}
 				<div className="card-group card-columns">
-					{posts.map(post => <PostCard post={post} key={post.postId}/>)}
+					{posts.map(post => (
+							<PostCard post={post} key={post.postId}/>
+						)
+					)}
 				</div>
 			</main>
 		</>

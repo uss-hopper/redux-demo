@@ -11,6 +11,7 @@ import {Route,BrowserRouter, Switch} from "react-router-dom";
 import {FourOhFour} from "./pages/four-oh-four/FourOhFour";
 import {Home} from "./pages/home/Home";
 import {UserPosts} from "./pages/userPosts/UserPosts";
+import {Test} from "./pages/test/Test";
 
 const store = createStore(reducers,applyMiddleware(thunk));
 
@@ -20,6 +21,7 @@ const Routing = (store) => (
 		<BrowserRouter>
 			<Switch>
 				<Route exact path="/user/:userId" component={UserPosts} userId=":userId"/>
+				<Route exact path="/test" component={Test} />
 				<Route exact path="/" component={Home}/>
 				<Route component={FourOhFour}/>
 			</Switch>
