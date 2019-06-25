@@ -4,11 +4,11 @@ import {useAxios} from "../../shared/misc/useAxios";
 export const Test = () => {
 
 	const [data, setData] = useState([]);
-
+	const axios = useAxios();
 
 
 	useEffect(()=> {
-		setData(useAxios("apis/tweet/"))
+		setData(axios("apis/tweet/"))
 	}, []);
 
 	console.log(data);

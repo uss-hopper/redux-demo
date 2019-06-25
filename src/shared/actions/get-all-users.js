@@ -1,4 +1,4 @@
-import {httpConfig} from "../misc/http-config";
+ import {httpConfig} from "../misc/useAxios";
 
 export const getAllUsers = () => async dispatch => {
 	//const {data} = await httpConfig('/apis/users/');

@@ -1,7 +1,7 @@
 import axios from "axios/index";
 
 
-export async function useAxios(path, verb = null, requestObject = null) {
+export function useAxios(path, verb = null, requestObject = null) {
 
 	const http = axios.create()
 		.interceptors.response.use(function({data, headers}) {
@@ -26,26 +26,26 @@ export async function useAxios(path, verb = null, requestObject = null) {
 			return Promise.reject(error);
 		});
 
-	const uuidv4ExpressionObject = new RegExp(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/);
+	const uuidV4ExpressionObject = new RegExp(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/);
 
 	switch(verb) {
 
-		case "post":
-			return await requestObject ? http.post(path, requestObject) : undefined;
-
-		case "put":
-			return await requestObject ? preformPut(path) : undefined;
-		case "delete":
-			return await http.delete(path);
+		// case "post":
+		// 	return await requestObject ? http.post(path, requestObject) : undefined;
+		//
+		// case "put":
+		// 	return await requestObject ? preformPut(path) : undefined;
+		// case "delete":
+		// 	return await http.delete(path);
 
 		default:
-			return await http.get(path);
+			return  http.get(path);
 
 	}
 
 	function preformPut(path, requestObject) {
 		let id = path.substring(path.lastIndexOf('/') + 1);
-		console.log(uuidv4ExpressionObject.match(id));
+		console.log(uuidV4ExpressionObject.match(id));
 	}
 }
 
