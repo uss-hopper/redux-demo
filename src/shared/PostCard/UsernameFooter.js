@@ -1,15 +1,15 @@
 import React  from 'react';
-import { Route } from 'react-router';
 import {useSelector} from "react-redux";
 
 export const UsernameFooter = ({userId}) => {
 
 
-	const user = useSelector((state, ownProps) => {
-		return state.users ? state.users.find( user => userId === user.postUserId) : null
+	const user = useSelector((state) => {
+		return state.users ? state.users.find( user => userId === user.userId) : null
 	});
-
-	return <p>username</p>
-
-
+	return(
+		<>
+			{user && <h3>{user.username}</h3>}
+		</>
+	)
 };
