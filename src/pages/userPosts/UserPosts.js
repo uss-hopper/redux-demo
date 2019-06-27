@@ -2,25 +2,29 @@ import {useSelector, useDispatch} from "react-redux";
 import React, {useEffect} from 'react';
 import {getUserPosts} from "../../shared/actions/get-user-posts";
 import {PostCard} from "../../shared/PostCard/PostCard";
+import {getUserByUserId} from "../../shared/actions/get-all-users";
 
 export const UserPosts = ({match}) => {
 
 	const dispatch = useDispatch();
 
 	const sideEffects = () => {
-		dispatch(getUserPosts(match.params.userId))
+		dispatch(getUserPosts(match.params.userId));
+		dispatch(getUserByUserId(match.params.userId))
 	};
 
 	const sideEffectInputs = [match.params.userId];
 
 	useEffect(sideEffects, sideEffectInputs);
 
-	const userPosts = useSelector(state => (
-		state.userPosts ? state.userPosts : []
+	const posts = useSelector(state => (
+		state.posts ? state.posts : []
+	));
+	const user = useSelector(state => (
+		state.users ? state.users[0] : null
 	));
 
-	const posts = userPosts.posts ? [...userPosts.posts] : [];
-	const user = userPosts.user ? {...userPosts.user} : null;
+	console.log(user);
 
 	return (
 		<>
