@@ -10,7 +10,7 @@ export const UserPosts = ({match}) => {
 
 	const sideEffects = () => {
 		dispatch(getUserPosts(match.params.userId));
-		dispatch(getUserByUserId(match.params.userId))
+		dispatch(getUserByUserId(match.params.userId));
 	};
 
 	const sideEffectInputs = [match.params.userId];
@@ -23,8 +23,6 @@ export const UserPosts = ({match}) => {
 	const user = useSelector(state => (
 		state.users ? state.users[0] : null
 	));
-
-	console.log(user);
 
 	return (
 		<>

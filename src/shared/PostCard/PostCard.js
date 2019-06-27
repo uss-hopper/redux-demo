@@ -1,4 +1,5 @@
 import React from "react";
+import {UsernameFooter} from "./UsernameFooter";
 
 export const  PostCard = ({post}) => {
 
@@ -11,7 +12,7 @@ export const  PostCard = ({post}) => {
 					<small className="text-muted">{post.username}</small>
 				</p>
 				<div className="card-footer text-muted text-center">
-					user name goes here
+					<UsernameFooter userId={post.postUserId}/>
 				</div>
 			</div>
 		</div>
