@@ -6,7 +6,7 @@ import {PostCard} from "../../shared/PostCard/PostCard";
 export const Posts = () => {
 
 	const dispatch = useDispatch();
-	const posts = useSelector(state => (state.posts));
+	const posts = useSelector(state => (state.posts ? state.posts : []));
 
 	const effects = () => {
 		dispatch(getPostsAndUsers());
@@ -19,7 +19,9 @@ export const Posts = () => {
 
 	return (
 		<>
-			{posts.map(post => <PostCard post={post}/>)}
+			<div className="card-columns">
+				{posts.map(post => <PostCard post={post}/>)}
+			</div>
 		</>
 	);
 
