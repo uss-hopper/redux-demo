@@ -1,14 +1,13 @@
 import {useSelector, useDispatch} from "react-redux";
 import React, {useEffect} from 'react';
 import {getUserPosts} from "../../shared/actions/get-user-posts";
-import {PostCard} from "./PostCard";
+import {PostCard} from "../../shared/PostCard/PostCard";
 
 export const UserPosts = ({match}) => {
 
 	const dispatch = useDispatch();
 
 	const sideEffects = () => {
-
 		dispatch(getUserPosts(match.params.userId))
 	};
 
