@@ -20,7 +20,7 @@ export const Posts = () => {
 	return (
 		<>
 			<div className="card-columns">
-				{posts.map(post => <PostCard post={post}/>)}
+				{posts.map(post => <PostCard post={post} key={post.postId}/>)}
 			</div>
 		</>
 	);
