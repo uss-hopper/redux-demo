@@ -7,25 +7,26 @@ import {getAllUsers} from "../../shared/actions/get-all-users";
 export const Home = () => {
 
 	// returns the users store from Redux and assigns it to the users variable
-	const users = useSelector(state => state.users);
+	const users = useSelector(state => state.users ? state.users : []);
 
-	// assign useDispatch reference to dispatch for later use.
+	// assigns useDispatch reference to the dispatch variable for later use.
 	const dispatch = useDispatch();
 
 
 	// Define the side effects that will occur in the application.
 	// E.G code that handles dispatches to redux, API requests, or timers.
 	function sideEffects() {
+		// The dispatch function takes actions as arguments to make changes to the store/redux.
 		dispatch(getAllUsers())
 	}
 
-	// Declare any inputs that will be used by functions that have sideEffects.
+	// Declare any inputs that will be used by functions that are declared in sideEffects.
 	const sideEffectInputs = [];
 
 	/**
 	 * Pass both sideEffects and sideEffectInputs to useEffect.
 	 * useEffect is what handles rerendering of components when sideEffects resolve.
-	 * Eg when a network request to an api has completed and there is new data to display on the dom.
+	 * E.g when a network request to an api has completed and there is new data to display on the dom.
 	 */
 	useEffect(sideEffects, sideEffectInputs);
 

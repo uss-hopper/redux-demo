@@ -1,6 +1,7 @@
 import React from "react";
 
-export const  PostCard = ({post}) => {
+export const  PostCard = (props) => {
+	const {post} = props;
 	return (
 		<div className="card text-white bg-dark mb-3">
 			<div className="card-body">
