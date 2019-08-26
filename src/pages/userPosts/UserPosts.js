@@ -17,6 +17,7 @@ export const UserPosts = ({match}) => {
 	const dispatch = useDispatch();
 
 	const sideEffects = () => {
+
 		// The dispatch function takes actions as arguments to make changes to the store/redux.
 		dispatch(getUserPosts(match.params.userId))
 	};

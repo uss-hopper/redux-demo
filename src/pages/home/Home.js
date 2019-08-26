@@ -25,9 +25,9 @@ export const Home = () => {
 
 	/**
 	 * Pass both sideEffects and sideEffectInputs to useEffect.
-	 * useEffect is what handles rerendering of components when sideEffects resolve.
-	 * E.g when a network request to an api has completed and there is new data to display on the dom.
-	 */
+	* useEffect is what handles rerendering of components when sideEffects resolve.
+	* E.g when a network request to an api has completed and there is new data to display on the dom.
+	*/
 	useEffect(sideEffects, sideEffectInputs);
 
 	return (
