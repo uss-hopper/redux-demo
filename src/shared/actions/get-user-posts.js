@@ -1,6 +1,6 @@
 import {httpConfig} from "../misc/http-config";
 import _ from "lodash";
-import {getUserByUserId} from "./get-all-users";
+import {getUserByUserId} from "./get-users";
 
 export const getAllPosts = () => async dispatch => {
 	const {data} = await httpConfig(`/apis/users/?posts=true`);
@@ -20,7 +20,7 @@ export const getPostsAndUsers = () => async (dispatch, getState) => {
 
 
 	const userIds = _.uniq(_.map(getState().posts, "userId"));
-	userIds.forEach(id => dispatch(fetchUser(id)));
+	userIds.forEach(id => dispatch(getUserByUserId(id)));
 
 	// _.chain(getState().posts)
 	// 	.map("postUserId")

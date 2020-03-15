@@ -12,7 +12,7 @@ const UserListComponent = ({users}) => {
 						<td>{user.name}</td>
 						<td>{user.email}</td>
 						<td>{user.phone}</td>
-						<td>{user.username}</td>
+						<td>{user.username === "Karianne" ? "Her USERNAME is Karianne" : "NOT Karianne"}</td>
 						<td>{user.website}</td>
 					</tr>
 				))}
